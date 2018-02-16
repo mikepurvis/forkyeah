@@ -14,8 +14,7 @@
 
 import subprocess
 
-OPS='''
-add
+OPS='''add
 apply
 checkout
 clean
@@ -25,11 +24,10 @@ fetch
 push
 remote
 reset
-tag
-'''
+tag'''
 
 class Git:
-    def invoke(self, op, *args, **kwargs):
+    def _invoke(self, op, *args, **kwargs):
         stdin = kwargs.get('stdin', None)
         cmd = ('git', op) + args
         if stdin:
@@ -41,10 +39,10 @@ class Git:
 
 def make_git_op(op):
     def func(self, *args, **kwargs):
-        return self.invoke(op, *args, **kwargs)
+        return self._invoke(op, *args, **kwargs)
     return func
 
-for op in OPS.strip().split():
+for op in OPS.split():
     setattr(Git, op, make_git_op(op))
 
 git = Git()
