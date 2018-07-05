@@ -16,6 +16,7 @@ from forkyeah.git import git
 from forkyeah import DEFAULT_CONFIG_FILE
 
 from datetime import datetime
+import os
 import requests
 import yaml
 
@@ -63,6 +64,10 @@ def tag_and_push(fork_config):
     git.push(fork_config['repo'], tag_name)
     
 def main():
+    if not os.path.exists(DEFAULT_CONFIG_FILE):
+        print("Config file %s not found in current directory, nothing to do!" % DEFAULT_CONFIG_FILE)
+        return False
+
     with open(DEFAULT_CONFIG_FILE) as f:
         config = yaml.load(f)
 
@@ -73,4 +78,4 @@ def main():
             break
         print('')
 
-    tag_and_push(config['fork'])
+    return tag_and_push(config['fork'])
