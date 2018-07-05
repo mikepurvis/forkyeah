@@ -9,7 +9,7 @@ install_requires = [
 
 setup(
     name='forkyeah',
-    version='0.0.0',
+    version='0.0.1',
     packages=['forkyeah'],
     install_requires=install_requires,
     author='Mike Purvis',
