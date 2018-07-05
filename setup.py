@@ -2,6 +2,7 @@ import sys
 from setuptools import find_packages, setup
 
 install_requires = [
+    'requests',
     'setuptools',
     'empy',
     'PyYAML',
