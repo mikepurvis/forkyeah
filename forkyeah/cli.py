@@ -41,7 +41,7 @@ def apply_patch(patch):
 
     if patch['patch'].startswith('http'):
         # Patch is found at the supplied URL, fetch it.
-        diff = requests.get(patch['patch']).text.encode('utf-8')
+        diff = requests.get(patch['patch']).text
     reverse = patch.get('reverse', False)
 
     args = ['-3', '--whitespace=nowarn']
@@ -69,7 +69,7 @@ def main():
         return False
 
     with open(DEFAULT_CONFIG_FILE) as f:
-        config = yaml.load(f)
+        config = yaml.safe_load(f)
 
     fetch_upstream(config['upstream'], config['fork']['branch'])
 
