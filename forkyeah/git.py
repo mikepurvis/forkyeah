@@ -31,11 +31,11 @@ class Git:
         stdin = kwargs.get('stdin', None)
         cmd = ('git', op) + args
         if stdin:
-            p = subprocess.Popen(cmd, stdin=subprocess.PIPE)
+            p = subprocess.Popen(cmd, stdin=subprocess.PIPE, universal_newlines=True)
             p.communicate(stdin)
             return p.returncode
         else:
-            return subprocess.call(cmd)
+            return subprocess.call(cmd, universal_newlines=True)
 
 def make_git_op(op):
     def func(self, *args, **kwargs):

@@ -12,7 +12,7 @@ setup(
     name='forkyeah',
     version='0.0.2',
     packages=['forkyeah'],
-    install_requires=install_requires,
+    python_requires='>=3.5',
     author='Mike Purvis',
     author_email='mpurvis@clearpath.ai',
     maintainer='Mike Purvis',
